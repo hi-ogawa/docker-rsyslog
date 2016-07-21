@@ -1,0 +1,9 @@
+## minimal configuration ##
+
+# provides UDP syslog reception
+$ModLoad imudp
+$UDPServerRun 514
+
+# logentries integration
+$template Logentries,"<auth-token> %HOSTNAME% %syslogtag%%msg%\n"
+*.* @@data.logentries.com:80;Logentries
